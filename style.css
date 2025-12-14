@@ -108,16 +108,6 @@ body {
     transform: scale(1.03);
 }
 
-#resetBtn {
-    background-color: #ff7675;
-    color: #fff;
-}
-
-#resetBtn:hover {
-    background-color: #e05555;
-    transform: scale(1.03);
-}
-
 #textBoard {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(8px);
@@ -226,8 +216,7 @@ footer a:hover {
         font-size: 1.7rem;
     }
 
-    #submitBtn,
-    #resetBtn {
+    #submitBtn {
         font-size: 15px;
         padding: 10px;
     }
