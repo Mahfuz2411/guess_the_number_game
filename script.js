@@ -2,14 +2,12 @@ console.log("HEllo");
 
 let input = document.getElementById("input");
 
+
 let gb01 = document.getElementById("gb01");
 let gb02 = document.getElementById("gb02");
 let gb03 = document.getElementById("gb03");
 
 let submitBtn = document.getElementById("submitBtn");
-
-
-let resetBtn = document.getElementById("resetBtn");
 
 let alert = document.getElementById("alert");
 
@@ -39,6 +37,10 @@ const randomNumberMaker = () => {
 
 let randomNumber = randomNumberMaker();
 let totalGuess = 0;
+let gameOver = false;
+
+
+
 
 const handleSubmit = () => {
     let inputText = input.value;
@@ -59,36 +61,57 @@ const handleSubmit = () => {
             if(inputText[i] == randomNumber[i]) correct++;
         }
 
+        gb03.innerText = `Total Guess: ${totalGuess}`;
         if(correct == 5) {
-            gb01.innerText = "You guessed it!!"
+            submitBtn.innerText = "Reset";
 
             showAlert(`You guessed the Number in ${totalGuess} moves`, "success");
 
-            submitBtn.className = "hidden";
-            resetBtn.className = "";
+            gameOver = true;
+
         } else {
             const guess = document.createElement("div");
-            guess.className = "guess";
+            guess.classList.add("guess");
+
+            if(correct == 0) guess.classList.add("incorrect");
+            else guess.classList.add("success");
+
             guess.innerText = `${inputText}: ${correct} in correct position`;
-            gb03.appendChild(guess);
-            gb01.innerText = `${correct} in correct position`;
+            gb02.appendChild(guess);
             input.value = "";
         }
-        
     }
-
 };
 
 const handleReset = () => {
     randomNumber = randomNumberMaker();
     totalGuess = 0;
+    gameOver = false;
+    submitBtn.innerText = "Submit";
 
     input.value = "";
-    gb03.innerHTML = "";
-    submitBtn.className = "";
-    resetBtn.className = "hidden";
+    gb02.innerHTML = "";
+
 }
 
+gb01.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(!gameOver) {
+        handleSubmit();
+    }else {
+        handleReset();
+    }
+});
 
-submitBtn.addEventListener("click", handleSubmit);
-resetBtn.addEventListener("click", handleReset);
+
+// submitBtn.addEventListener("click", handleSubmit);
+// resetBtn.addEventListener("click", handleReset);
+
+
+// randomNumber = randomNumberMaker();
+// totalGuess = 0;
+
+// input.value = "";
+// gb03.innerHTML = "";
+// submitBtn.className = "";
+// resetBtn.className = "hidden";
