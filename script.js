@@ -40,8 +40,7 @@ const randomNumberMaker = () => {
 let randomNumber = randomNumberMaker();
 let totalGuess = 0;
 
-
-submitBtn.addEventListener("click", () => {
+const handleSubmit = () => {
     let inputText = input.value;
     if(!inputText ) {
         showAlert("No Input Found!", "error");
@@ -70,7 +69,7 @@ submitBtn.addEventListener("click", () => {
         } else {
             const guess = document.createElement("div");
             guess.className = "guess";
-            guess.innerText = `${inputText}`;
+            guess.innerText = `${inputText}: ${correct} in correct position`;
             gb03.appendChild(guess);
             gb01.innerText = `${correct} in correct position`;
             input.value = "";
@@ -78,9 +77,9 @@ submitBtn.addEventListener("click", () => {
         
     }
 
-});
+};
 
-resetBtn.addEventListener("click", () => {
+const handleReset = () => {
     randomNumber = randomNumberMaker();
     totalGuess = 0;
 
@@ -88,4 +87,8 @@ resetBtn.addEventListener("click", () => {
     gb03.innerHTML = "";
     submitBtn.className = "";
     resetBtn.className = "hidden";
-});
+}
+
+
+submitBtn.addEventListener("click", handleSubmit);
+resetBtn.addEventListener("click", handleReset);
