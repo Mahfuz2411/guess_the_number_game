@@ -50,6 +50,7 @@ body {
     outline: none;
 }
 
+
 #gb03 {
     height: 40px;
     width: 100%;
@@ -61,6 +62,7 @@ body {
     justify-content: center;
     font-weight: bold;
 }
+
 
 #gb01 {
     display: flex;
@@ -74,6 +76,7 @@ body {
     flex-direction: column-reverse;
     gap: 10px;
 }
+
 
 .guess {
     background: rgba(255, 255, 255, 0.2);
