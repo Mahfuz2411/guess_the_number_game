@@ -9,12 +9,19 @@
 </head>
 
 <body>
+    </div>
     <div>
         <h1 id="header">Guess The Number</h1>
         <div id="bodyDiv">
             <div id="gameBoard">
                 <!-- Main game here -->
-                <p id="gb03">Total Guess: 0</p>
+                <div id="gbtop">
+                    <p id="gb03">Total Guess: 0</p>
+                    <button id="gb04" class="tooltip">
+                        📖
+                        <span class="tooltip-text">RuleBook</span>
+                    </button>
+                </div>
                 <form id="gb01">
                     <input type="number" placeholder="Enter Number here" id="input">
                     <button type="submit" id="submitBtn">
@@ -25,14 +32,14 @@
 
                 </div>
             </div>
-            <div id="textBoard">
+            <div id="textBoard" class="hidden">
                 <div id="text01" class="">
                     <div>
                         <h3>Rules:</h3>
                         <ul>
-                            <li>The system will generate a random 5-digit number.</li>
+                            <li>The system will generate a random 5 digit number.</li>
                             <li>You must guess the number by entering exactly 5 digits.</li>
-                            <li>Each guess must be a 5-digit number (no more, no less).</li>
+                            <li>Each guess must be a 5 digit number (no more, no less).</li>
                             <li>After each guess, you will be told how many digits are in the correct position.</li>
                             <li>The game continues until all 5 digits are in the correct position.</li>
                             <li>Your total number of guesses will be counted.</li>
@@ -45,12 +52,10 @@
         <div id="alert" class="hidden">
         </div>
     </div>
-    <div>
-        <footer>
-            <p><a href="https://github.com/Mahfuz2411/guess_the_number_game">Click here</a> to get the code</p>
-            <p>Developed by <a href="https://github.com/Mahfuz2411">Mahfuz</a>, version 2.0</p>
-        </footer>
-    </div>
+    <footer>
+        <p><a href="https://github.com/Mahfuz2411/guess_the_number_game">Click here</a> to get the code</p>
+        <p>Developed by <a href="https://github.com/Mahfuz2411">Mahfuz</a>, version 2.3</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 

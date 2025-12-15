@@ -6,6 +6,7 @@ let input = document.getElementById("input");
 let gb01 = document.getElementById("gb01");
 let gb02 = document.getElementById("gb02");
 let gb03 = document.getElementById("gb03");
+let gb04 = document.getElementById("gb04");
 
 let submitBtn = document.getElementById("submitBtn");
 
@@ -17,19 +18,19 @@ let alert = document.getElementById("alert");
 // -------------
 // let randomNumber = Math.floor(Math.random()*90000 + 10000);
 
-const showAlert = (mssg, type) => {
+const showAlert = (mssg, type, time = 3000) => {
     alert.textContent = mssg;
     alert.className = type;
-    
+
     setTimeout(() => {
-        alert.className = "hidden"; 
-    }, 3000);
+        alert.className = "hidden";
+    }, time);
 }
 
 const randomNumberMaker = () => {
     let result = "";
-    for (let i=0; i<5; i++) {
-        result += Math.floor(Math.random()*10);
+    for (let i = 0; i < 5; i++) {
+        result += Math.floor(Math.random() * 10);
     }
     // showAlert(``, "info")
     return result;
@@ -39,33 +40,35 @@ let randomNumber = randomNumberMaker();
 let totalGuess = 0;
 let gameOver = false;
 
+console.log(randomNumber);
+
 
 
 
 const handleSubmit = () => {
     let inputText = input.value;
-    if(!inputText ) {
+    if (!inputText) {
         showAlert("No Input Found!", "error");
-    } else if(inputText.length != 5) {
-        if(inputText.length < 5) {
+    } else if (inputText.length != 5) {
+        if (inputText.length < 5) {
             showAlert(`Add ${5 - inputText.length} more digit`, "error");
         } else {
             showAlert(`Remove ${inputText.length - 5} digit/s`, "error");
         }
-        
+
     } else {
         let correct = 0;
-        totalGuess ++;
+        totalGuess++;
 
-        for(let i=0; i<5; i++) {
-            if(inputText[i] == randomNumber[i]) correct++;
+        for (let i = 0; i < 5; i++) {
+            if (inputText[i] == randomNumber[i]) correct++;
         }
 
         gb03.innerText = `Total Guess: ${totalGuess}`;
-        if(correct == 5) {
+        if (correct == 5) {
             submitBtn.innerText = "Reset";
 
-            showAlert(`You guessed the Number in ${totalGuess} moves`, "success");
+            showAlert(`You guessed the Number in ${totalGuess} moves`, "success", 10000);
 
             gameOver = true;
 
@@ -73,7 +76,7 @@ const handleSubmit = () => {
             const guess = document.createElement("div");
             guess.classList.add("guess");
 
-            if(correct == 0) guess.classList.add("incorrect");
+            if (correct == 0) guess.classList.add("incorrect");
             else guess.classList.add("success");
 
             guess.innerText = `${inputText}: ${correct} in correct position`;
@@ -96,22 +99,22 @@ const handleReset = () => {
 
 gb01.addEventListener("submit", (e) => {
     e.preventDefault();
-    if(!gameOver) {
+    if (!gameOver) {
         handleSubmit();
-    }else {
+    } else {
         handleReset();
     }
 });
 
+gb04.addEventListener("click", () => {
+    const textBoard = document.getElementById("textBoard");
+    textBoard.classList.toggle("hidden");
 
-// submitBtn.addEventListener("click", handleSubmit);
-// resetBtn.addEventListener("click", handleReset);
-
-
-// randomNumber = randomNumberMaker();
-// totalGuess = 0;
-
-// input.value = "";
-// gb03.innerHTML = "";
-// submitBtn.className = "";
-// resetBtn.className = "hidden";
+    if (!textBoard.classList.contains("hidden")) {
+        showAlert("RuleBook opened", "info");
+        gb04.innerText = "📘";
+    } else {
+        showAlert("RuleBook closed", "info");
+        gb04.innerText = "📖";
+    }
+});
